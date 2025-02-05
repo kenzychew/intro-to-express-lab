@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express()
 const port = 3000
+
 //* Landing Page
 app.get('/', (req, res) => {
   res.send('<h1>Home Page</h1>')
-})
+});
 
 //* 1. Be Polite, Greet the User
 app.get('/greetings/:username', (req, res) => {
@@ -36,13 +37,13 @@ app.get('/collectibles/:id', (req, res) => {
   const { id } = req.params;
 
   if (id >= collectibles.length || id < 0) {
-    res.send('This item is not yet in stock. Check back soon!')
-    return
-  }
+    res.send('This item is not yet in stock. Check back soon!');
+    return;
+  };
 
   const item = collectibles[id]
-  res.send(`So, you want the ${item.name}? For ${item.price}, it can be yours!`)
-})
+  res.send(`So, you want the ${item.name}? For ${item.price}, it can be yours!`);
+});
 
 //* 4. Filter Shoes by Query Parameters
 const shoes = [
@@ -65,7 +66,7 @@ app.get('/shoes', (req, res) => {
     if (type) filteredShoes = filteredShoes.filter(shoe => shoe.type === type);
 
     res.send(filteredShoes);
-})
+});
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`)
